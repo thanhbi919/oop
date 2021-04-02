@@ -1,6 +1,6 @@
-package hust.soict.hedspi.DataTest;
+package hust.soict.hedspi.datatest;
 
-import hust.soict.hedspi.Utils.MyDate;
+import hust.soict.hedspi.utils.MyDate;
 
 public class DataTest {
     public static void main(String[] args) {

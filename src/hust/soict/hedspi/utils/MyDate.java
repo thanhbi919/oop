@@ -1,4 +1,4 @@
-package hust.soict.hedspi.Utils;
+package hust.soict.hedspi.utils;
 import java.util.Date;
 
 public class MyDate {
