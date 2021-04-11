@@ -22,7 +22,8 @@ public class Aims {
         byte choose;
 
         ArrayList<Order> orders = new ArrayList<>();
-
+//        Thread thread= new Thread(new MemoryDaemon());
+//        thread.start();
         int i = 0;
         do {
             showMenu();
@@ -43,9 +44,17 @@ public class Aims {
                     orders.get(i - 1).addMedia();
                     break;
                 case 3:
+                    if (orders.get(i-1).sizeofitemOrder()==0) {
+                        System.out.println("list empty");
+                        break;
+                    }
                     orders.get(i - 1).removeMedia();
                     break;
                 case 4:
+                    if (orders.get(i-1).sizeofitemOrder()==0) {
+                        System.out.println("list empty");
+                        break;
+                    }
                     System.out.println("the items list of order: ");
                     orders.get(i - 1).printOrdered();
                     break;

@@ -14,6 +14,13 @@ public class Book extends Media {
         this.authors = authors;
     }
 
+    public List<String> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<String> authors) {
+        this.authors = authors;
+    }
     public List<String> addAuthor(String authorName) {
         authors.add(authorName);
         return authors;

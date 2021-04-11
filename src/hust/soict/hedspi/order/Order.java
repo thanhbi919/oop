@@ -1,6 +1,7 @@
 package hust.soict.hedspi.order;
 
 import hust.soict.hedspi.aims.media.Book;
+import hust.soict.hedspi.aims.media.CompactDisc;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.digitalvideodisc.DigitalVideoDisc;
 
@@ -18,8 +19,9 @@ public class Order {
 
     public Media addMedia() {
         int choose;
-        Media media = new Media();
-        System.out.print("You want to add book or dvd (book enter 1,dvd enter 2): ");
+        Media media = new Media() {
+        };
+        System.out.print("You want to add book or dvd (book enter 1,dvd enter 2,cd enter 3): ");
         choose = sc.nextInt();
         sc.nextLine();
         switch (choose) {
@@ -65,7 +67,61 @@ public class Order {
                         System.out.println("maximum " + MAX_NUMBERS_ORDERED + " products in 1 ordered");
                     }
                 }
+                System.out.println("you want to play DVD(enter 1 to play): ");
+                int choose2 = 0;
+                choose2 = sc.nextInt();
+                switch (choose2) {
+                    case 1:
+                        dvd.play();
+                        break;
+                    default:
+                        break;
+                }
                 return dvd;
+            case 3:
+                CompactDisc compactDisc = new CompactDisc();
+                System.out.print("Title: ");
+                compactDisc.setTitle(sc.nextLine());
+                System.out.print("Catelogy: ");
+                compactDisc.setCategory(sc.nextLine());
+                System.out.print("Director: ");
+                compactDisc.setDirectory(sc.nextLine());
+                System.out.print("Length: ");
+                compactDisc.setLength(sc.nextInt());
+                System.out.print("Cost: ");
+                compactDisc.setCost(sc.nextFloat());
+                System.out.print("Artist: ");
+                sc.nextLine();
+                compactDisc.setArtist(sc.nextLine());
+                System.out.print("How many Track? ");
+                int track = sc.nextInt();
+                sc.nextLine();
+                for (int i = 1; i <= track; i++) {
+                    System.out.print("Title of track "+i+":");
+                    String titleTrack= sc.nextLine();
+                    System.out.print("Length of track "+i+":");
+                    int lengthTrack=sc.nextInt();
+                    compactDisc.addTrack(titleTrack,lengthTrack);
+                    sc.nextLine();
+                }
+                if (itemsOrdered.size() < MAX_NUMBERS_ORDERED) {
+                    if (choose == 3) {
+                        itemsOrdered.add(compactDisc);
+                    } else {
+                        System.out.println("maximum " + MAX_NUMBERS_ORDERED + " products in 1 ordered");
+                    }
+                }
+                System.out.println("you want to play CD(enter 1 to play): ");
+                int choose3 = 0;
+                choose3 = sc.nextInt();
+                switch (choose3) {
+                    case 1:
+                        compactDisc.play();
+                        break;
+                    default:
+                        break;
+                }
+                return compactDisc;
             default:
                 System.out.println("Input error");
                 break;
@@ -95,21 +151,21 @@ public class Order {
             System.out.println("Order empty!");
             return;
         }
-        System.out.print("Enter the name of media you want to delete: ");
+        System.out.print("Enter the name of meia you want to delete: ");
         title = sc.nextLine();
-        for (Media x : itemsOrdered) {
-            if (title.equals(x.getTitle())) {
-                itemsOrdered.remove(x);
+        int j=0;
+        for (int i=0;i<itemsOrdered.size();i++) {
+            if (title.equals(itemsOrdered.get(i).getTitle())) {
+                itemsOrdered.remove(i);
+                j++;
             }
         }
-    }
-
-    public float totalCost() {
-        float total = 0;
-        for (Media x : itemsOrdered) {
-            total += x.getCost();
+        if(j>0){
+            System.out.println("Delete finish");
         }
-        return total;
+    }
+    public int sizeofitemOrder(){
+        return itemsOrdered.size();
     }
 
     public void printOrdered() {

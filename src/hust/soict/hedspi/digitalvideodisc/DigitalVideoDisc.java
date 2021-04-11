@@ -1,23 +1,15 @@
 package hust.soict.hedspi.digitalvideodisc;
 
-import hust.soict.hedspi.aims.media.Media;
+import hust.soict.hedspi.aims.media.Disc;
+import hust.soict.hedspi.aims.media.Playable;
 
-public class DigitalVideoDisc extends Media {
-    private int length;
-    private String directory;
+public class DigitalVideoDisc extends Disc implements Playable {
+    public DigitalVideoDisc(int length, String directory) {
+        super(length, directory);
+    }
 
     public DigitalVideoDisc() {
-    }
-
-    public DigitalVideoDisc(int length, String directory) {
-        this.length = length;
-        this.directory = directory;
-    }
-
-    public DigitalVideoDisc(String title, String category, float cost, int length, String directory) {
-        super(title, category, cost);
-        this.length = length;
-        this.directory = directory;
+        super();
     }
 
     public int getLength() {
@@ -90,5 +82,11 @@ public class DigitalVideoDisc extends Media {
                 ", length=" + length +
                 ", directory='" + directory + '\'' +
                 '}';
+    }
+
+    @Override
+    public void play() {
+        System.out.println("Playing DVD: " + this.getTitle());
+        System.out.println("DVD length: " + this.getLength());
     }
 }
